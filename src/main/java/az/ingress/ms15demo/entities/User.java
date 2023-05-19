@@ -9,7 +9,9 @@ import lombok.experimental.FieldDefaults;
 @ToString
 @Getter
 @Setter
+@NoArgsConstructor
 public class User {
     String name;
     Integer age;
+    String FIN;
 }

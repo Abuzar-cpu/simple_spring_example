@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepository {
     public void addUser(User user) {
-        System.out.println("Adding user: " + user);
+        System.out.println("(Database layer) adding user: " + user);
     }
 }
