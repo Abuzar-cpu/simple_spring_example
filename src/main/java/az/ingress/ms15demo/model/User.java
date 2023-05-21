@@ -1,4 +1,4 @@
-package az.ingress.ms15demo.entities;
+package az.ingress.ms15demo.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
