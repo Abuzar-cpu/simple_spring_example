@@ -23,7 +23,6 @@ public class ErrorHandler {
 
     @ExceptionHandler(NotFoundException.class)
 
-    // TODO: explore error types and use cases
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleNotFound(NotFoundException e) {
         return new ErrorResponse(USER_NOT_FOUND.getMessage());
