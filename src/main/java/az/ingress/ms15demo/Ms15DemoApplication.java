@@ -1,13 +1,15 @@
 package az.ingress.ms15demo;
 
-import az.ingress.ms15demo.repository.UserRepository;
-import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories
 @Slf4j
+@Configuration
 public class Ms15DemoApplication {
 
     // TODO: Go to http://localhost:8080/swagger-ui/index.html after launching application
@@ -17,11 +19,7 @@ public class Ms15DemoApplication {
         SpringApplication.run(Ms15DemoApplication.class, args);
     }
 
-    @PostConstruct
-    public void preloadDb() {
-        UserRepository.preload();
-
-        log.info("Database loaded");
-    }
 
 }
+
+// Continue from 1:12:00

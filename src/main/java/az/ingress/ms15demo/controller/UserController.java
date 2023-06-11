@@ -1,13 +1,10 @@
 package az.ingress.ms15demo.controller;
 
-import az.ingress.ms15demo.model.User;
-import az.ingress.ms15demo.model.response.DeleteUserResponse;
-import az.ingress.ms15demo.model.response.GetUserResponse;
+import az.ingress.ms15demo.model.*;
 import az.ingress.ms15demo.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("v1/users/")
@@ -15,28 +12,41 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public User addUser(@RequestBody User user) {
-        return this.userService.addUser(user);
+    public CreateUserResponse addUser(@RequestBody CreateUserRequest user) {
+        return userService.createUser(user);
     }
 
-    @GetMapping("{id}")
-    public GetUserResponse getUserById(@PathVariable Integer id) {
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("id/{id}")
+    public GetUserResponse getUserById(@PathVariable Long id) {
         return this.userService.getUserById(id);
     }
 
-    @GetMapping()
-    public List<GetUserResponse> getAllUsers() {
-        return this.userService.getAllUsers();
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("name/{name}")
+    public GetUserResponse getUserById(@PathVariable String name) {
+        return this.userService.getUserByName(name);
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("fin/{FIN}")
+    public GetUserResponse findByFIN(@PathVariable String FIN) {
+        return this.userService.getUserByFin(FIN);
     }
 
     @DeleteMapping("/{id}")
-    public DeleteUserResponse deleteById(@PathVariable Integer id) {
-        return this.userService.deleteUserById(id);
+    @ResponseStatus(HttpStatus.I_AM_A_TEAPOT) // :D
+    public void deleteById(@PathVariable Long id) {
+        this.userService.deleteById(id);
     }
 
-    @PutMapping("/{id}")
-    public void updateUser(@PathVariable Integer id, User user) {
-        this.userService.updateUser(id, user);
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @PutMapping("")
+    public GetUserResponse updateUserByFIN(@RequestBody UpdateUserByFinRequest user) {
+        return this.userService.updateUserByFIN(user);
     }
 }
