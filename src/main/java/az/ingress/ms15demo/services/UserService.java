@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static az.ingress.ms15demo.model.enums.ExceptionMessages.USER_ALREADY_EXISTS;
 import static az.ingress.ms15demo.model.enums.ExceptionMessages.USER_NOT_FOUND;
 
@@ -20,7 +22,7 @@ public class UserService {
     private final ModelMapper modelMapper;
 
 
-    public GetUserResponse getUserByName(String name) {
+    public List<GetUserResponse> getUserByName(String name) {
         var user = this.userRepository.getUserByName(name);
         if (user == null) {
             log.info("Action.getUserByName.info -- user not found with name: {}", name);
@@ -28,7 +30,7 @@ public class UserService {
         }
 
         log.info("Action.getUserByName.success -- returning user: {}", name);
-        return this.modelMapper.map(user, GetUserResponse.class);
+        return user.stream().map(u -> this.modelMapper.map(u, GetUserResponse.class)).toList();
     }
 
     public CreateUserResponse createUser(CreateUserRequest user) {
