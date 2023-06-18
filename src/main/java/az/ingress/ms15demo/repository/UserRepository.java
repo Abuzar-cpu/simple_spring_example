@@ -14,5 +14,5 @@ public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificat
     Optional<User> findByFIN(String FIN);
 
     @Query("select u from User u where u.name=:name")
-    List<User> getUserByName(String name);
+    List<User> findUserByName(String name);
 }

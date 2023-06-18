@@ -8,6 +8,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -22,7 +23,7 @@ public class UserSpecification implements Specification<User> {
 
     private UserCriteria userCriteria;
     @Override
-    public Predicate toPredicate(Root<User> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+    public Predicate toPredicate(@NotNull Root<User> root, @NotNull CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         var predicate = PredicateUtil.builder()
                 .addNullSafe(
                         userCriteria.getName(),
