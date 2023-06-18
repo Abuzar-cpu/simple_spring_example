@@ -1,9 +1,8 @@
 package az.ingress.ms15demo.controller;
 
-import az.ingress.ms15demo.model.CreateUserRequest;
-import az.ingress.ms15demo.model.CreateUserResponse;
-import az.ingress.ms15demo.model.GetUserResponse;
-import az.ingress.ms15demo.model.UpdateUserByFinRequest;
+import az.ingress.ms15demo.model.*;
+import az.ingress.ms15demo.model.criteria.PageCriteria;
+import az.ingress.ms15demo.model.criteria.UserCriteria;
 import az.ingress.ms15demo.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -54,4 +53,10 @@ public class UserController {
     public GetUserResponse updateUserByFIN(@RequestBody UpdateUserByFinRequest user) {
         return this.userService.updateUserByFIN(user);
     }
+
+    @GetMapping
+    public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria) {
+        return this.userService.getUsers(pageCriteria, userCriteria);
+    }
+
 }

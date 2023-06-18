@@ -3,10 +3,15 @@ package az.ingress.ms15demo.services;
 import az.ingress.ms15demo.exceptions.NotFoundException;
 import az.ingress.ms15demo.exceptions.UserAlreadyExistsException;
 import az.ingress.ms15demo.model.*;
+import az.ingress.ms15demo.model.criteria.PageCriteria;
+import az.ingress.ms15demo.model.criteria.UserCriteria;
 import az.ingress.ms15demo.repository.UserRepository;
+import az.ingress.ms15demo.services.specification.UserSpecification;
+import az.ingress.ms15demo.utils.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -81,4 +86,13 @@ public class UserService {
         return this.modelMapper.map(updated, GetUserResponse.class);
     }
 
+
+    public PageableUserResponse getUsers(PageCriteria pageCriteria, UserCriteria userCriteria) {
+        var pageNumber = pageCriteria.getPage() == null ? 0 : pageCriteria.getPage();
+        var count = pageCriteria.getCount() == null ? 1 : pageCriteria.getCount();
+
+        var userPage = this.userRepository.findAll(new UserSpecification(userCriteria), PageRequest.of(pageNumber, count));
+
+        return UserMapper.mapToPageableUserResponse(userPage);
+    }
 }
