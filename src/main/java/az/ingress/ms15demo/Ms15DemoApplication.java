@@ -13,13 +13,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class Ms15DemoApplication {
 
     // TODO: Go to http://localhost:8080/swagger-ui/index.html after launching application
-    // TODO: Database will be preloaded with mock data
-
     public static void main(String[] args) {
         SpringApplication.run(Ms15DemoApplication.class, args);
     }
 
 
 }
-
-// Continue from 1:12:00

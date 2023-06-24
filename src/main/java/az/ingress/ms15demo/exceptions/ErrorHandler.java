@@ -16,28 +16,33 @@ public class ErrorHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handle(Exception e) {
-        log.error("Exception: {}", e.getMessage());
+        log.error("Exception: ", e);
 
         return new ErrorResponse(UNEXPECTED_ERROR.getMessage());
     }
 
     @ExceptionHandler(NotFoundException.class)
-
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleNotFound(NotFoundException e) {
+        logError(e);
         return new ErrorResponse(USER_NOT_FOUND.getMessage());
     }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleNotFound(UserAlreadyExistsException e) {
+        logError(e);
         return new ErrorResponse(USER_ALREADY_EXISTS.getMessage());
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
     public ErrorResponse handleNotFound(HttpRequestMethodNotSupportedException e) {
+        logError(e);
         return new ErrorResponse(METHOD_NOT_ALLOWED.getMessage());
     }
 
+    private static void logError(Exception e) {
+        log.error("Exception occurred: ", e);
+    }
 }
