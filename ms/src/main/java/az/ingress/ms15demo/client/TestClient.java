@@ -11,4 +11,7 @@ public interface TestClient {
 
     @GetMapping("")
     String getStatus();
+
+    @GetMapping("/cron")
+    String getTime();
 }
