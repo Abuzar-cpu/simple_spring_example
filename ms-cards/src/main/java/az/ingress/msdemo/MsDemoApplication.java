@@ -1,10 +1,10 @@
 package az.ingress.msdemo;
 
+import az.ingress.msdemo.model.entities.User;
+import jakarta.persistence.Entity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -17,9 +17,9 @@ public class MsDemoApplication {
         SpringApplication.run(MsDemoApplication.class, args);
     }
 
-    @GetMapping("")
-    public String run() {
-        return "You've reached here using feign. Congrats!";
+    @PostMapping("")
+    public String run(@RequestBody User user) {
+        return"Adding user";
     }
 
     @GetMapping("/cron")
