@@ -1,0 +1,25 @@
+databaseChangeLog:
+    - changeSet:
+          comment: initial database structure for ms-cards
+          id: creating cards table
+          author: Abuzar
+          changes:
+              - createTable:
+                    tableName: cards
+                    columns:
+                        - column:
+                              name: id
+                              type: BIGINT
+                              autoIncrement: true
+              - column:
+                    name: card_number
+                    type: varchar(16)
+              - column:
+                    name: expiration_date
+                    type: Date
+              - column:
+                    name: cvv
+                    type: INT
+              - column:
+                    name: status
+                    type: INT

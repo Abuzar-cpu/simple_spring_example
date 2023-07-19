@@ -1,0 +1,25 @@
+databaseChangeLog:
+    - changeSet:
+          comment: initial database structure for ms-cards
+          id: creating cards table
+          author: Abuzar
+          changes:
+              - createTable:
+                    tableName: users
+                    columns:
+                        - column:
+                              name: id
+                              type: BIGINT
+                              autoIncrement: true
+              - column:
+                    name: name
+                    type: varchar(16)
+              - column:
+                    name: age
+                    type: Integer
+              - column:
+                    name: address
+                    type: varchar(50)3
+              - column:
+                    name: status
+                    type: INT
