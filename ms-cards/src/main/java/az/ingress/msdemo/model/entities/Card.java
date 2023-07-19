@@ -18,6 +18,7 @@ public class Card {
     private Long id;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "card", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     @ToString.Exclude
     private Account account;
     private String cardNumber;

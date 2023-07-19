@@ -14,6 +14,12 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
+@NamedEntityGraph(
+        name = "UserEntityGraph",
+        attributeNodes = {
+                @NamedAttributeNode("accountList")
+        }
+)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

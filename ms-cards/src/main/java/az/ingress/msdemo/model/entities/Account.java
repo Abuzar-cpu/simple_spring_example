@@ -20,11 +20,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(
-            mappedBy = "account",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
+    @OneToOne
     @MapsId
     @JoinColumn(name = "id")
     @ToString.Exclude
