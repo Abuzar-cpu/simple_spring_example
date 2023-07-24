@@ -13,7 +13,7 @@ databaseChangeLog:
                               autoIncrement: true
               - column:
                     name: card_number
-                    type: varchar(16)
+                    type: int
               - column:
                     name: expiration_date
                     type: Date
@@ -22,4 +22,5 @@ databaseChangeLog:
                     type: INT
               - column:
                     name: status
-                    type: INT
+                    type: varchar
+              - constraints:
