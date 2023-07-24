@@ -35,5 +35,5 @@ public class User {
             fetch = FetchType.LAZY
     )
     private List<Account> accountList;
-    private Integer status;
+    private String status;
 }
