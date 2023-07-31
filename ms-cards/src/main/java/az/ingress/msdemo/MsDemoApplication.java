@@ -1,9 +1,10 @@
 package az.ingress.msdemo;
 
-import az.ingress.msdemo.model.entities.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
@@ -14,11 +15,6 @@ public class MsDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MsDemoApplication.class, args);
-    }
-
-    @PostMapping("")
-    public String run(@RequestBody User user) {
-        return "Adding user";
     }
 
     @GetMapping("/cron")

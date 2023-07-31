@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      comment: initial database structure for ms-cards
+      id: creating cards table
+      author: Abuzar
+      changes:
+        - createTable:
+            tableName: cards
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: card_number
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: expiration_date
+                  type: Date
+                  constraints:
+                    nullable: false
+              - column:
+                  name: cvv
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: false

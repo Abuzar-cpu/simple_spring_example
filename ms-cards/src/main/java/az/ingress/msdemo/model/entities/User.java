@@ -1,10 +1,9 @@
 package az.ingress.msdemo.model.entities;
 
+import az.ingress.msdemo.model.entities.enums.UserStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -30,10 +29,15 @@ public class User {
     private String address;
 
     @OneToMany(
+            orphanRemoval = true,
             mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @ToString.Exclude
+    @JsonIgnore
     private List<Account> accountList;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
 }

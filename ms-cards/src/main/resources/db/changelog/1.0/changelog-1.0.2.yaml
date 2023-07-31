@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      comment: initial database structure for ms-cards
+      id: creating accounts table
+      author: Abuzar
+      changes:
+        - createTable:
+            tableName: accounts
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: account_holder_name
+                  type: varchar(16)
+              - column:
+                  name: account_open_date
+                  type: Date
+              - column:
+                  name: account_status
+                  type: varchar(50)
+              - column:
+                  name: balance
+                  type: INT
+              - column:
+                  name: card_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_accounts_to_cards
+                    references: cards(id)
+
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_accounts_to_users
+                    references: users(id)

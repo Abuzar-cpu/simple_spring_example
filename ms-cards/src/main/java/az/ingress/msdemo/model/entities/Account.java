@@ -1,12 +1,12 @@
 package az.ingress.msdemo.model.entities;
 
 
+import az.ingress.msdemo.model.entities.enums.AccountStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -21,23 +21,23 @@ public class Account {
     private Long id;
 
     @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
     @ToString.Exclude
     private Card card;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
-
     private Integer balance;
-    private LocalDate accountOpenDate;
-    private String accountStatus;
+
+    @CreationTimestamp
+    private LocalDate accountOpenDate = LocalDate.now();
+
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
     private String accountHolderName;
 
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
+    @JoinColumn(name = "user_id")
     @ToString.Exclude
     private User user;
 
