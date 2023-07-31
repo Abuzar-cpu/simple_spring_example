@@ -29,7 +29,7 @@ public class UserService {
 
     public List<GetUserResponse> getUserByName(String name) {
         var user = this.userRepository.findUserByName(name);
-        if (user.size() == 0) {
+        if (user.isEmpty()) {
             log.info("Action.getUserByName.info -- user not found with name: {}", name);
             throw new NotFoundException(USER_NOT_FOUND.getMessage());
         }
